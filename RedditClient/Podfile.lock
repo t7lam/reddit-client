@@ -1,0 +1,16 @@
+PODS:
+  - PinkyPromise (0.7.1)
+
+DEPENDENCIES:
+  - PinkyPromise
+
+SPEC REPOS:
+  trunk:
+    - PinkyPromise
+
+SPEC CHECKSUMS:
+  PinkyPromise: 55869bc3e8c5baab7bcd5201c608bac4ce6621ec
+
+PODFILE CHECKSUM: c1a331f8a2d200a0c79bcfc28b29c70a23bbccca
+
+COCOAPODS: 1.9.3
