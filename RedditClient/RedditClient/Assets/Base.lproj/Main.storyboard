@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kn6-Zb-DoF">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorites Sub-Reddits-->
+        <scene sceneID="Uy2-rC-r0G">
+            <objects>
+                <tableViewController id="bYj-Wd-kuU" customClass="FavoriteTableViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="41J-lx-UiX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="H9a-bA-ie9">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H9a-bA-ie9" id="dh3-62-InO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bYj-Wd-kuU" id="jcl-3o-XId"/>
+                            <outlet property="delegate" destination="bYj-Wd-kuU" id="HRQ-Ya-cIu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites Sub-Reddits" id="MFB-lY-HEV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOc-TH-bXt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1502" y="-390"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="ewo-44-eCy">
+            <objects>
+                <tableViewController id="Ych-zJ-1V5" customClass="SearchTableViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cr8-sx-Qka">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Rgd-eg-Zdw">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="gZX-5Z-jjK">
+                                <rect key="frame" x="0.0" y="68.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gZX-5Z-jjK" id="Ige-hW-Ab8">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ych-zJ-1V5" id="HO3-qm-4Kz"/>
+                            <outlet property="delegate" destination="Ych-zJ-1V5" id="YcK-KS-fIU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search" id="qAH-M3-m1d"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Rgd-eg-Zdw" id="MaV-3P-Yld"/>
+                        <outlet property="searchTabTableView" destination="cr8-sx-Qka" id="0xp-T4-RBL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5l-HY-NwC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1667" y="370"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="W2S-TS-1cC">
+            <objects>
+                <navigationController id="4Ne-eI-xAa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="UFU-93-EiO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yqw-d6-bp7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ych-zJ-1V5" kind="relationship" relationship="rootViewController" id="BSg-Hq-zU3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzT-9k-Ls8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599" y="394"/>
+        </scene>
+        <!--Load Post View Controller-->
+        <scene sceneID="xtY-rT-Ghd">
+            <objects>
+                <viewController id="ro9-op-edj" customClass="LoadPostViewController" customModule="RedditClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZRB-uX-au0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Vz-oS-jMU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="S7q-oO-7NW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Vz-oS-jMU" firstAttribute="trailing" secondItem="S7q-oO-7NW" secondAttribute="trailing" id="05d-3j-Vnc"/>
+                            <constraint firstItem="4Vz-oS-jMU" firstAttribute="top" secondItem="S7q-oO-7NW" secondAttribute="top" id="4c6-hX-DeV"/>
+                            <constraint firstItem="4Vz-oS-jMU" firstAttribute="bottom" secondItem="S7q-oO-7NW" secondAttribute="bottom" id="Vjt-Eb-wJS"/>
+                            <constraint firstItem="4Vz-oS-jMU" firstAttribute="leading" secondItem="S7q-oO-7NW" secondAttribute="leading" id="q5x-Ym-Ihx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="4Vz-oS-jMU" id="Kti-8P-Upy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Sm-ck-eOP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744.92753623188412" y="-1084.1517857142856"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="Ldz-qr-Pex">
+            <objects>
+                <navigationController id="giL-gP-QrK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="heart.fill" catalog="system" id="ZxT-m4-kRi"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bzP-2K-bs0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bYj-Wd-kuU" kind="relationship" relationship="rootViewController" id="lWO-Qn-adQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Nq-XN-esn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="615" y="-390"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mKi-y4-zl5">
+            <objects>
+                <tabBarController id="Kn6-Zb-DoF" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DKc-qu-pdx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="giL-gP-QrK" kind="relationship" relationship="viewControllers" id="xmi-0g-IUf"/>
+                        <segue destination="4Ne-eI-xAa" kind="relationship" relationship="viewControllers" id="DeF-9t-uJH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cnv-k5-sg8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-299" y="-14"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
