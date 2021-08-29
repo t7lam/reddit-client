@@ -11,6 +11,7 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
 
+    var selectedThread: String!
     var posts: [Post] = []
 
     override func viewDidLoad() {
@@ -22,8 +23,8 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func loadPosts() {
-        print("test")
-        guard let url = URL(string: "https://www.reddit.com/r/aww/.json") else {
+        print("selected thread: \(selectedThread)")
+        guard let url = URL(string: "https://www.reddit.com/r/\(selectedThread!)/.json") else {
             fatalError("URL Failure")
             return
         }
