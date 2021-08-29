@@ -11,6 +11,9 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
 
+    let userDefaults = UserDefaults.standard
+    let userFavouritesKey = "favorites"
+    var userFavourites: [String] = []
     var selectedThread: String!
     var posts: [Post] = []
 
@@ -20,14 +23,51 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
         loadPosts()
 
         setUpTableView()
+
+        userFavourites = retrieveUserFavourites()
+
+        let favouriteButton = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(favoriteTapped))
+
+        self.navigationItem.rightBarButtonItem  = favouriteButton
     }
 
-    func loadPosts() {
-        print("selected thread: \(selectedThread)")
-        guard let url = URL(string: "https://www.reddit.com/r/\(selectedThread!)/.json") else {
-            fatalError("URL Failure")
-            return
+    @objc func favoriteTapped() {
+        print("Favourite Tapped")
+        var title = self.navigationItem.rightBarButtonItem?.title
+        if title == "Favourite" {
+            saveToUserFavorites(favoritesArray: self.userFavourites, savingFavorites: self.selectedThread)
+            self.navigationItem.rightBarButtonItem?.title = "Unfavourite"
+        } else {
+            deleteFromUserFavorites(favoritesArray: self.userFavourites, removingFavorites: self.selectedThread)
+            self.navigationItem.rightBarButtonItem?.title = "Favourite"
         }
+
+    }
+
+    // MARK: - User Default logic
+    func retrieveUserFavourites() -> [String] {
+        guard let favourites = userDefaults.object(forKey: userFavouritesKey) as? [String] else {
+            userDefaults.setValue([], forKey: userFavouritesKey)
+            return []
+        }
+        return favourites
+    }
+
+    func saveToUserFavorites(favoritesArray: [String], savingFavorites: String) {
+        var newFavorites = favoritesArray
+        newFavorites.append(savingFavorites)
+        userDefaults.setValue(newFavorites, forKey: userFavouritesKey)
+    }
+
+    func deleteFromUserFavorites(favoritesArray: [String], removingFavorites: String) {
+        var newFavorites = favoritesArray.filter { $0 != removingFavorites}
+        userDefaults.setValue(newFavorites, forKey: userFavouritesKey)
+    }
+
+
+    // MARK: - Load post logic
+    func loadPosts() {
+        let url = RedditAPI.EndPoint.post(selectedThread!).url
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, let response = response, error == nil else {
