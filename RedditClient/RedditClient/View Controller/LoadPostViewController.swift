@@ -25,10 +25,14 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
         setUpTableView()
 
         userFavourites = retrieveUserFavourites()
+        if userFavourites.contains(selectedThread) {
+            let favouriteButton = UIBarButtonItem(title: "Unfavourite", style: .plain, target: self, action: #selector(favoriteTapped))
+            self.navigationItem.rightBarButtonItem  = favouriteButton
+        } else {
+            let favouriteButton = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(favoriteTapped))
+            self.navigationItem.rightBarButtonItem  = favouriteButton
+        }
 
-        let favouriteButton = UIBarButtonItem(title: "Favourite", style: .plain, target: self, action: #selector(favoriteTapped))
-
-        self.navigationItem.rightBarButtonItem  = favouriteButton
     }
 
     @objc func favoriteTapped() {
