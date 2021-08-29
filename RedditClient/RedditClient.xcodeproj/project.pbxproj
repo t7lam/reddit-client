@@ -61,6 +61,8 @@
 		130E1C8F26CB079100570C8D /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				130E1C9026CB07AF00570C8D /* FavoriteTableViewController.swift */,
+				130E1C9226CB07BB00570C8D /* SearchTableViewController.swift */,
 				132E737026D01C91009C2869 /* LoadPostViewController.swift */,
 			);
 			path = "View Controller";
@@ -76,12 +78,12 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		130E1C9526CB081D00570C8D /* Reddit API V2 */ = {
+		130E1C9526CB081D00570C8D /* Reddit API */ = {
 			isa = PBXGroup;
 			children = (
 				130E1C9626CB083200570C8D /* RedditAPI.swift */,
 			);
-			path = "Reddit API V2";
+			path = "Reddit API";
 			sourceTree = "<group>";
 		};
 		132E736D26D0191F009C2869 /* Model */ = {
@@ -90,15 +92,6 @@
 				132E736E26D0193B009C2869 /* RedditPageModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		132E744726DBFB9D009C2869 /* View Controller V2 */ = {
-			isa = PBXGroup;
-			children = (
-				130E1C9026CB07AF00570C8D /* FavoriteTableViewController.swift */,
-				130E1C9226CB07BB00570C8D /* SearchTableViewController.swift */,
-			);
-			path = "View Controller V2";
 			sourceTree = "<group>";
 		};
 		1398D51626BDA6A2007B98D4 = {
@@ -122,9 +115,8 @@
 		1398D52126BDA6A2007B98D4 /* RedditClient */ = {
 			isa = PBXGroup;
 			children = (
-				132E744726DBFB9D009C2869 /* View Controller V2 */,
 				132E736D26D0191F009C2869 /* Model */,
-				130E1C9526CB081D00570C8D /* Reddit API V2 */,
+				130E1C9526CB081D00570C8D /* Reddit API */,
 				130E1C9426CB07F400570C8D /* Assets */,
 				130E1C8F26CB079100570C8D /* View Controller */,
 				1398D52226BDA6A2007B98D4 /* AppDelegate.swift */,

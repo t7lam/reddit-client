@@ -27,7 +27,7 @@ class FavoriteTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // unable to update favourites table view asyncronously 
+        // unable to update favourites table view asyncronously
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
