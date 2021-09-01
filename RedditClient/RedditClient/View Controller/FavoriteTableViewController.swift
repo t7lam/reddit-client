@@ -23,14 +23,13 @@ class FavoriteTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        userFavourites = retrieveUserFavourites()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // unable to update favourites table view asyncronously
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.userFavourites = self.retrieveUserFavourites()
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
