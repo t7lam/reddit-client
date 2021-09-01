@@ -39,11 +39,11 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
         print("Favourite Tapped")
         var title = self.navigationItem.rightBarButtonItem?.title
         if title == "Favourite" {
-            saveToUserFavorites(favoritesArray: self.userFavourites, savingFavorites: self.selectedThread)
-            self.navigationItem.rightBarButtonItem?.title = "Unfavourite"
+            saveToUserFavorites(itemToSave: self.selectedThread)
+            navigationItem.rightBarButtonItem?.title = "Unfavourite"
         } else {
-            deleteFromUserFavorites(favoritesArray: self.userFavourites, removingFavorites: self.selectedThread)
-            self.navigationItem.rightBarButtonItem?.title = "Favourite"
+            deleteFromUserFavorites(favouritesArray: self.userFavourites, removingFavourites: self.selectedThread)
+            navigationItem.rightBarButtonItem?.title = "Favourite"
         }
 
     }
@@ -57,15 +57,19 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
         return favourites
     }
 
-    func saveToUserFavorites(favoritesArray: [String], savingFavorites: String) {
-        var newFavorites = favoritesArray
-        newFavorites.append(savingFavorites)
-        userDefaults.setValue(newFavorites, forKey: userFavouritesKey)
+    func saveToUserFavorites(itemToSave: String) {
+        var favourites = retrieveUserFavourites()
+        guard !favourites.contains(itemToSave) else {
+            print("already exist")
+            return
+        }
+        favourites.append(itemToSave)
+        userDefaults.setValue(favourites, forKey: userFavouritesKey)
     }
 
-    func deleteFromUserFavorites(favoritesArray: [String], removingFavorites: String) {
-        var newFavorites = favoritesArray.filter { $0 != removingFavorites}
-        userDefaults.setValue(newFavorites, forKey: userFavouritesKey)
+    func deleteFromUserFavorites(favouritesArray: [String], removingFavourites: String) {
+        var newFavourites = favouritesArray.filter { $0 != removingFavourites}
+        userDefaults.setValue(newFavourites, forKey: userFavouritesKey)
     }
 
 
