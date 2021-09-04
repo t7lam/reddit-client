@@ -37,6 +37,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! UITableViewCell
+        let selectedThread = searchResult[indexPath.row]
+        showPost(selectedThread: selectedThread)
+    }
+
     // MARK: Search Functionalities
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
@@ -73,5 +79,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         task.resume()
     }
 
+    // MARK: - Selecting From Search Result
+    func showPost(selectedThread: String) {
+        let bundle = Bundle(for: LoadPostViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        let postVC = storyboard.instantiateViewController(identifier: "PostViewController") as! LoadPostViewController
+        postVC.selectedThread = selectedThread
+        navigationController?.pushViewController(postVC, animated: false)
+    }
 
 }
