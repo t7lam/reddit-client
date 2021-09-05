@@ -12,23 +12,18 @@ class FavoriteTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     let userFavouritesKey = "favorites"
     var userFavourites: [String] = []
+    let favouriteManager = FavoriteManager()
 
     @IBOutlet var favouriteTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // unable to update favourites table view asyncronously
-        self.userFavourites = self.retrieveUserFavourites()
+        self.userFavourites = self.favouriteManager.retrieveUserFavourites()
         self.tableView.reloadData()
     }
 
@@ -50,15 +45,4 @@ class FavoriteTableViewController: UITableViewController {
         cell.textLabel?.text = userFavourites[indexPath.row]
         return cell
     }
-
-
-    // MARK: - User Default logic
-    func retrieveUserFavourites() -> [String] {
-        guard let favourites = userDefaults.object(forKey: userFavouritesKey) as? [String] else {
-            userDefaults.setValue([], forKey: userFavouritesKey)
-            return []
-        }
-        return favourites
-    }
-
 }

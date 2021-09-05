@@ -11,11 +11,10 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
 
-    let userDefaults = UserDefaults.standard
-    let userFavouritesKey = "favorites"
     var userFavourites: [String] = []
     var selectedThread: String!
     var posts: [Post] = []
+    let favouriteManager = FavoriteManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +23,7 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
 
         setUpTableView()
 
-        userFavourites = retrieveUserFavourites()
+        userFavourites = favouriteManager.retrieveUserFavourites()
         if userFavourites.contains(selectedThread) {
             let favouriteButton = UIBarButtonItem(title: "Unfavourite", style: .plain, target: self, action: #selector(favoriteTapped))
             self.navigationItem.rightBarButtonItem  = favouriteButton
@@ -39,39 +38,14 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
         print("Favourite Tapped")
         var title = self.navigationItem.rightBarButtonItem?.title
         if title == "Favourite" {
-            saveToUserFavorites(itemToSave: self.selectedThread)
+            favouriteManager.saveToUserFavorites(itemToSave: self.selectedThread)
             navigationItem.rightBarButtonItem?.title = "Unfavourite"
         } else {
-            deleteFromUserFavorites(favouritesArray: self.userFavourites, removingFavourites: self.selectedThread)
+            favouriteManager.deleteFromUserFavorites(favouritesArray: self.userFavourites, removingFavourites: self.selectedThread)
             navigationItem.rightBarButtonItem?.title = "Favourite"
         }
 
     }
-
-    // MARK: - User Default logic
-    func retrieveUserFavourites() -> [String] {
-        guard let favourites = userDefaults.object(forKey: userFavouritesKey) as? [String] else {
-            userDefaults.setValue([], forKey: userFavouritesKey)
-            return []
-        }
-        return favourites
-    }
-
-    func saveToUserFavorites(itemToSave: String) {
-        var favourites = retrieveUserFavourites()
-        guard !favourites.contains(itemToSave) else {
-            print("already exist")
-            return
-        }
-        favourites.append(itemToSave)
-        userDefaults.setValue(favourites, forKey: userFavouritesKey)
-    }
-
-    func deleteFromUserFavorites(favouritesArray: [String], removingFavourites: String) {
-        var newFavourites = favouritesArray.filter { $0 != removingFavourites}
-        userDefaults.setValue(newFavourites, forKey: userFavouritesKey)
-    }
-
 
     // MARK: - Load post logic
     func loadPosts() {
