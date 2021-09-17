@@ -12,7 +12,7 @@ class FavoriteTableViewController: UITableViewController {
     let userDefaults = UserDefaults.standard
     let userFavouritesKey = "favorites"
     var userFavourites: [String] = []
-    let favouriteManager = FavoriteManager()
+    let favouriteManager = FavouriteManager()
 
     @IBOutlet var favouriteTableView: UITableView!
 
@@ -44,5 +44,19 @@ class FavoriteTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell") as! UITableViewCell
         cell.textLabel?.text = userFavourites[indexPath.row]
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! UITableViewCell
+        let selectedThread = userFavourites[indexPath.row]
+        showPost(selectedThread: selectedThread)
+    }
+
+    func showPost(selectedThread: String) {
+        let bundle = Bundle(for: LoadPostViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        let postVC = storyboard.instantiateViewController(identifier: "PostViewController") as! LoadPostViewController
+        postVC.selectedThread = selectedThread
+        navigationController?.pushViewController(postVC, animated: false)
     }
 }

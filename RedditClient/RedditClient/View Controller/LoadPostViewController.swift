@@ -14,7 +14,7 @@ class LoadPostViewController: UIViewController, UITableViewDelegate, UITableView
     var userFavourites: [String] = []
     var selectedThread: String!
     var posts: [Post] = []
-    let favouriteManager = FavoriteManager()
+    let favouriteManager = FavouriteManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
